@@ -40,17 +40,20 @@ router.post('/users/logout', auth, async (req, res) => {
     }
 })
 
-router.get('/users/me', auth , async (req,res) => {
+router.get('/users/me', auth , async (req, res) => {
     res.send(req.user)
 })
 
 
 router.delete('/users/me', auth, async (req, res) => {
+    console.log('RUnning')
     try {
-        await req.user.remove();
-        res.send(user)
+        await req.user.remove()
+        // await req.user.remove()
+        console.log('log')
+        res.send(req.user)
     }catch (e) {
-        res.status(500).send(e)
+        res.status(500).send({ error: 'Catch block run' })
     }
 })
 
